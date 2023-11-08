@@ -1,0 +1,60 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+#
+# Import the CMS content for the site
+
+$siteUid=amazon
+$packageName=org.training.initialdata.constants
+$productCatalog=$siteUidProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$thumbnail=thumbnail(code, $catalogVersion)
+$picture=picture(code, $catalogVersion)
+$thumbnails=thumbnails(code, $catalogVersion)
+$detail=detail(code, $catalogVersion)
+$normal=normal(code, $catalogVersion)
+$others=others(code, $catalogVersion)
+$data_sheet=data_sheet(code, $catalogVersion)
+$medias=medias(code, $catalogVersion)
+$galleryImages=galleryImages(qualifier, $catalogVersion)
+$siteResource=jar:$packageName.AmazonInitialDataConstants&/$siteUidinitialdata/import/sampledata/productCatalogs/$productCatalog
+
+
+INSERT_UPDATE Product;picture;thumbnail;detail;others;normal;thumbnails;galleryImages;
+
+
+
+INSERT_UPDATE Media;mediaFormat(qualifier);code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];$catalogVersion;folder(qualifier)
+                    ;515Wx515H;/515Wx515H/553637-934.jpg;$siteResource/images/515Wx515H/553637-934.jpg;;;images
+                    ;300Wx300H;/300Wx300H/553637-934.jpg;$siteResource/images/300Wx300H/553637-934.jpg;;;images
+                    ;96Wx96H;/96Wx96H/553637-934.jpg;$siteResource/images/96Wx96H/553637-934.jpg;;;images
+                    ;65Wx65H;/65Wx65H/553637-934.jpg;$siteResource/images/65Wx65H/553637-934.jpg;;;images
+                    ;30Wx30H;/30Wx30H/553637-934.jpg;$siteResource/images/30Wx30H/553637-934.jpg;;;images
+
+
+INSERT_UPDATE MediaContainer;qualifier[unique=true];$medias;$catalogVersion;
+                            ;553637-934;/515Wx515H/553637-934.jpg,/300Wx300H/553637-934.jpg,/96Wx96H/553637-934.jpg,/65Wx65H/553637-934.jpg,/30Wx30H/553637-934.jpg;
+
+#UPDATE Product;code[unique=true];$picture;$thumbnail;$detail;$others;$normal;$thumbnails;$galleryImages;$catalogVersion
+#              ;553637;/300Wx300H/553637-934.jpg;/96Wx96H/553637-934.jpg;;/515Wx515H/553637-934.jpg,/65Wx65H/553637-934.jpg,/30Wx30H/553637-934.jpg;/300Wx300H/553637-934.jpg;/96Wx96H/553637-934.jpg;553637-934;
+
+UPDATE Product;code[unique=true];$picture;$galleryImages;$catalogVersion
+              ;553637;/300Wx300H/553637-934.jpg;553637-934;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

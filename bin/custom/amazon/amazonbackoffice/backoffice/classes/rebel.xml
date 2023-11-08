@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application xmlns="http://www.zeroturnaround.com">
+  <classpath>
+    <dir name="/Users/akshith/SAP/Amazon/hybris/bin/custom/amazon/amazonbackoffice/backoffice/classes" />
+  </classpath>
+</application>
